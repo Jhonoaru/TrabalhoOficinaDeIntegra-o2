@@ -2,30 +2,32 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Cadastrar Voluntário</title>
+  <title>Editar Voluntário</title>
 
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/voluntario.css">
 </head>
 <body>
 
-<!-- TOPO -->
+<!-- ================= TOPO ================= -->
 <div class="topbar">
-  <!-- 🔥 TROQUE AQUI PELA SUA IMAGEM -->
+  <!-- 🔥 TROQUE PELA SUA IMAGEM -->
   <img src="../images/logo.png" class="logo-img" alt="Logo ELLP">
+
   <div class="user">👤 João</div>
 </div>
 
+<!-- ================= CONTAINER ================= -->
 <div class="container">
 
-  <h2 class="titulo">Cadastrar Voluntário</h2>
+  <h2 class="titulo">Editar Voluntário</h2>
 
   <div class="card">
 
     <!-- NOME -->
     <div class="campo full">
       <label>Nome do voluntário</label>
-      <input id="nome" placeholder="João da Silva">
+      <input id="nome">
     </div>
 
     <!-- DATA -->
@@ -37,16 +39,25 @@
     <!-- CPF -->
     <div class="campo full">
       <label>CPF</label>
-      <input id="cpf" placeholder="123456789">
+      <input id="cpf">
     </div>
 
     <!-- NACIONALIDADE -->
     <div class="campo full">
       <label>Nacionalidade</label>
-      <input id="nacionalidade" placeholder="Brasileiro">
+      <input id="nacionalidade">
     </div>
 
-    <!-- RADIO -->
+    <!-- STATUS (NOVO) -->
+    <div class="campo full">
+      <label>Status</label>
+      <div class="radio-group">
+        <label><input type="radio" name="ativo" value="true"> Ativo</label>
+        <label><input type="radio" name="ativo" value="false"> Inativo</label>
+      </div>
+    </div>
+
+    <!-- UTFPR -->
     <div class="campo full">
       <label>Estudante da UTFPR</label>
       <div class="radio-group">
@@ -59,49 +70,49 @@
     <div class="grid-3">
       <div class="campo">
         <label>Curso</label>
-        <input id="curso" placeholder="Engenharia de Software">
+        <input id="curso">
       </div>
 
       <div class="campo">
         <label>Período</label>
-        <input id="periodo" placeholder="5">
+        <input id="periodo">
       </div>
 
       <div class="campo">
         <label>RA</label>
-        <input id="ra" placeholder="123456">
+        <input id="ra">
       </div>
     </div>
 
     <!-- ENDEREÇO -->
     <div class="campo full">
       <label>Endereço</label>
-      <input id="endereco" placeholder="Avenida Brasil, 123">
+      <input id="endereco">
     </div>
 
     <!-- GRID 2 -->
     <div class="grid-2">
       <div class="campo">
         <label>Cidade</label>
-        <input id="cidade" placeholder="Cornélio Procópio">
+        <input id="cidade">
       </div>
 
       <div class="campo">
         <label>Estado</label>
-        <input id="estado" placeholder="Paraná">
+        <input id="estado">
       </div>
     </div>
 
-    <!-- GRID 2 -->
+    <!-- CONTATO -->
     <div class="grid-2">
       <div class="campo">
         <label>E-mail</label>
-        <input id="email" placeholder="email@utfpr.edu.br">
+        <input id="email">
       </div>
 
       <div class="campo">
         <label>Telefone</label>
-        <input id="telefone" placeholder="43999999999">
+        <input id="telefone">
       </div>
     </div>
 
@@ -115,7 +126,7 @@
 
     <!-- BOTÕES -->
     <div class="form-buttons">
-      <button class="btn-salvar" onclick="cadastrar()">Cadastrar</button>
+      <button class="btn-salvar" onclick="salvar()">Salvar</button>
       <button class="btn-cancelar" onclick="voltar()">Cancelar</button>
     </div>
 
@@ -123,6 +134,6 @@
 
 </div>
 
-<script src="../js/voluntario.js"></script>
+<script src="../js/voluntarioEditar.js"></script>
 </body>
 </html>

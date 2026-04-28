@@ -18,19 +18,22 @@ app.get('/test-db', async (req, res) => {
   res.json(result.rows[0]);
 });
 
+// 🔽 ROTAS (ANTES DO LISTEN)
+const voluntarioRoutes = require('./routes/voluntarioRoutes');
+app.use('/voluntarios', voluntarioRoutes);
+
+const authRoutes = require('./routes/authRoutes');
+app.use('/auth', authRoutes);
+
+const sinteseRoutes = require('./routes/sinteseRoutes');
+app.use('/sinteses', sinteseRoutes);
+
+const cronogramaRoutes = require('./routes/cronogramaRoutes');
+app.use('/cronogramas', cronogramaRoutes);
+
+// 🔽 AGORA SIM O LISTEN
 const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });
-
-const voluntarioRoutes = require('./routes/voluntarioRoutes');
-
-app.use('/voluntarios', voluntarioRoutes);
-
-const authRoutes = require('./routes/authRoutes');
-
-app.use('/auth', authRoutes);
-
-const sinteseRoutes = require('./routes/sinteseRoutes');
-app.use('/sinteses', sinteseRoutes);

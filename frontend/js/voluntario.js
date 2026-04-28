@@ -1,96 +1,51 @@
-async function carregarVoluntarios() {
-  const res = await fetch('http://localhost:3001/voluntarios');
-  const data = await res.json();
-
-  const lista = document.getElementById('lista');
-  lista.innerHTML = '';
-
-  data.forEach(v => {
-  const tr = document.createElement('tr');
-
-  tr.innerHTML = `
-    <td>${v.nome}</td>
-    <td>${v.email}</td>
-    <td>${v.telefone}</td>
-    <td>
-      <button onclick="editar(${v.id}, '${v.nome}', '${v.email}', '${v.telefone}', '${v.cpf}')">Editar</button>
-      <button onclick="remover(${v.id})">Excluir</button>
-    </td>
-  `;
-
-  lista.appendChild(tr);
-});
-}
-
+// ================= CADASTRAR =================
 async function cadastrar() {
-  const nome = document.getElementById('nome').value;
-  const email = document.getElementById('email').value;
-  const telefone = document.getElementById('telefone').value;
-  const cpf = document.getElementById('cpf').value;
-  const sintese_id = document.getElementById('sintese').value;
+  const dados = {
+    nome: document.getElementById('nome').value,
+    data_nascimento: document.getElementById('data_nascimento').value,
+    cpf: document.getElementById('cpf').value,
+    nacionalidade: document.getElementById('nacionalidade').value,
+    estudante: document.querySelector('input[name="estudante"]:checked')?.value || null,
+    curso: document.getElementById('curso').value,
+    periodo: document.getElementById('periodo').value,
+    ra: document.getElementById('ra').value,
+    endereco: document.getElementById('endereco').value,
+    cidade: document.getElementById('cidade').value,
+    estado: document.getElementById('estado').value,
+    email: document.getElementById('email').value,
+    telefone: document.getElementById('telefone').value,
+    cronograma_id: document.getElementById('cronograma').value || null
+  };
 
   await fetch('http://localhost:3001/voluntarios', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
-    nome,
-    email,
-    telefone,
-    cpf,
-    sintese_id
-  })
-});
-
-  carregarVoluntarios();
-}
-
-async function remover(id) {
-  await fetch(`http://localhost:3001/voluntarios/${id}`, {
-    method: 'DELETE'
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(dados)
   });
 
-  carregarVoluntarios();
+  window.location.href = 'dashboard.html';
 }
 
-async function editar(id, nome, email, telefone, cpf) {
-  const novoNome = prompt('Nome:', nome);
-  const novoEmail = prompt('Email:', email);
-  const novoTelefone = prompt('Telefone:', telefone);
-  const novoCpf = prompt('CPF:', cpf);
-
-  await fetch(`http://localhost:3001/voluntarios/${id}`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      nome: novoNome,
-      email: novoEmail,
-      telefone: novoTelefone,
-      cpf: novoCpf
-    })
-  });
-
-  carregarVoluntarios();
-}
-
-async function carregarSinteses() {
-  const res = await fetch('http://localhost:3001/sinteses');
+// ================= CARREGAR CRONOGRAMAS =================
+async function carregarCronogramas() {
+  const res = await fetch('http://localhost:3001/cronogramas');
   const data = await res.json();
 
-  const select = document.getElementById('sintese');
-  select.innerHTML = '';
+  const select = document.getElementById('cronograma');
+  select.innerHTML = '<option value="">Selecione</option>';
 
-  data.forEach(s => {
+  data.forEach(c => {
     const option = document.createElement('option');
-    option.value = s.id;
-    option.text = s.descricao;
+    option.value = c.id;
+    option.text = c.nome;
     select.appendChild(option);
   });
 }
 
-// carregar ao abrir
-carregarVoluntarios();
-carregarSinteses();
+// ================= VOLTAR =================
+function voltar() {
+  window.location.href = 'dashboard.html';
+}
+
+// ================= INIT =================
+carregarCronogramas();
