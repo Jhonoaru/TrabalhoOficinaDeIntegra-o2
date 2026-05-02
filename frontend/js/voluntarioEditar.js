@@ -97,5 +97,17 @@ function voltar() {
   window.location.href = 'dashboard.html';
 }
 
+async function excluir() {
+  if (!confirm('Tem certeza que deseja excluir este voluntário?')) return;
+
+  await fetch(`http://localhost:3001/voluntarios/${voluntarioId}`, {
+    method: 'DELETE'
+  });
+
+  alert('Voluntário excluído com sucesso');
+
+  window.location.href = 'dashboard.html';
+}
+
 // init
 carregarVoluntario();
